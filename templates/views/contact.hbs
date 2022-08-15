@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{>headlinks}}
+</head>
+
+<body>
+    {{>navbar}}
+
+    <!-- contact section start -->
+    <section class="container-fluid" id="contact">
+        <div class="heading text-center">
+            <h1>Contact Us</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-12 mx-auto">
+                <form action="/contact" method="POST">
+                    <div class="inputBox">
+                        <input type="text" name="name" required>
+                        <h3>Name</h3>
+                    </div>
+
+                    <div class="inputBox">
+                        <input type="email" name="email" required>
+                        <h3>Email</h3>
+                    </div>
+
+                    <div class="inputBox">
+                        <input type="number" name="mobile" required>
+                        <h3>Mobile</h3>
+                    </div>
+
+                    <div class="inputBox">
+                        <textarea cols="30" rows="30" name="message" required></textarea>
+                        <h3>Message</h3>
+                    </div>
+
+                    <input type="submit" value="Submit" class="btnStarted">
+                </form>
+            </div>
+        </div>
+
+        {{>map}}
+        {{>footer}}
+    </section>
+    <!-- contact section end -->
+</body>
+
+</html>
