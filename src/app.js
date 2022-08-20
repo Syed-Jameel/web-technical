@@ -3,8 +3,7 @@ require("../db/conn");
 const app = express();
 const port = process.env.PORT || 3000;
 
-//database
-const User = require('../models/validation');
+const users = require('../models/validation');
 app.use(express.urlencoded({extended:false}));
 
 //To dispaly static page
@@ -50,7 +49,7 @@ app.get("/contact", (req, res)=>{
 app.post("/contact",async(req, res)=>{
     try{
     //    res.send(req.body);
-    const userData= new User(req.body);
+    const userData= new users(req.body);
     await userData.save();
     res.status(201).render('index');
 
@@ -59,6 +58,10 @@ app.post("/contact",async(req, res)=>{
        res.status(500).send(error);
     }
 });
+
+app.get('*',(req , res) =>{
+    res.render("404error", {errorMsg : "Oops ! Page Not Found"});
+})
 
 //create server
 app.listen(port, () =>{

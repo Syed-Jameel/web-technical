@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{>headlinks}}
+</head>
+
+<body>
+    {{>navbar}}
+
+    <!--main header-->
+    <div class="container-fluid">
+        <div class="col-md-12 col-12 error_content">
+            <figure class="errimg">
+                <img src="images/404error.webp" alt="404img" class="img-fluid">
+            </figure>
+            <p>Welcome to Web Tachnical</p>
+            <h1>{{errorMsg}}</h1>
+            <a href="/"><button>GO Back</button></a>
+        </div>
+    </div>
+
+    {{>footer}}
+</body>
+
+</html>

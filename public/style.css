@@ -264,7 +264,7 @@ body {
 
 #contact form input[type="submit"]:hover {
     background-color: var(--main-color);
-    color:var(--main-bg);
+    color: var(--main-bg);
 }
 
 #contact form .inputBox input:focus~h3,
@@ -308,6 +308,52 @@ footer p a:hover {
     height: 35rem;
 }
 
+.error_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.error_content p {
+    font-size: 2rem;
+    word-spacing: 0.4rem;
+}
+
+.error_content h1 {
+    font-size: 3.5rem;
+    margin: 1rem 0 4rem 0;
+}
+
+.error_content button {
+    border: none;
+    padding: 0.8rem 1.8rem;
+    border-radius: 1rem;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    box-shadow: 0 8px 6px -6px var(--main-bg);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.error_content button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 0%;
+    height: 100%;
+    background: var(--main-color);
+    color: var(--main-bg);
+}
+
+.error_content button:hover::before {
+    width: 100%;
+    transition: 0.5s;
+}
+
 /* responsive code */
 @media screen and (max-width:768px) {
     html {
@@ -330,13 +376,13 @@ footer p a:hover {
 
     #about_left h1 {
         margin-bottom: 1rem;
-    } 
+    }
 
     #contact .heading h1 {
-      transform: scale(0.7);
+        transform: scale(0.7);
     }
 
     #contact form h3 {
         transform: scale(0.8);
-      }
+    }
 }

@@ -3,19 +3,12 @@
 
 //import mogoose module
 const mongoose = require('mongoose');
-//set up default mongoose connection
-mongoose.connect("mongodb://localhost:27017/my_db");
-//get mongoose to use global promise library
-mongoose.Promise = global.Promise;
-//get the default connection
-var db = mongoose.connection;
+// database
+const DB = "mongodb+srv://syed:Syed%407875@cluster0.j9elohl.mongodb.net/webtechnical_db?retryWrites=true&w=majority";
+mongoose.connect(DB,{
+    useNewUrlParser:true,
+    useUnifiedTopology:true,
 
-//connection Events
-//when successfully connected
-db.on("connected",function(){
-    console.log("connection Succefull...");
-});
-//if connection throws an error
-db.on("error", function(err){
-      console.log(`mongoose connection error: ${err}`);
-})
+}).then(()=>{
+    console.log("connection successfull");
+}).catch((error)=> console.log(`Mongoose connection error: ${error}`));
