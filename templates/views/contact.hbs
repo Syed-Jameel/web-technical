@@ -16,28 +16,33 @@
 
         <div class="row">
             <div class="col-md-6 col-12 mx-auto">
-                <form action="/contact" method="POST">
+                <form action="/contact" method="POST" id="contactForm" onsubmit="return validateForm()">
                     <div class="inputBox">
-                        <input type="text" name="name" id="name">
+                        <input type="text" name="name" id="name" onkeyup="validateName()">
                         <h3>Name</h3>
+                        <div id="nameError" class="error"></div>
                     </div>
 
                     <div class="inputBox">
-                        <input type="email" name="email" id="email">
+                        <input type="text" name="email" id="email" onkeyup="validateEmail()">
                         <h3>Email</h3>
+                        <div id="emailError" class="error"></div>
                     </div>
 
                     <div class="inputBox">
-                        <input type="number" name="mobile" id="mobile">
+                        <input type="text" name="mobile" id="mobile" onkeyup="validateMobile()">
                         <h3>Mobile</h3>
+                        <div id="mobileError" class="error"></div>
                     </div>
 
                     <div class="inputBox">
-                        <textarea cols="30" rows="30" name="message" id="message" required></textarea>
+                        <textarea cols="30" rows="10" name="message" id="message"
+                            onkeyup="validateMessage()"></textarea>
                         <h3>Message</h3>
+                        <div id="messageError" class="error"></div>
                     </div>
 
-                    <input type="submit" value="Submit" class="btnStarted">
+                    <input type="submit" class="btnStarted" value="Submit">
                 </form>
             </div>
         </div>
@@ -49,3 +54,115 @@
 </body>
 
 </html>
+
+<script type="text/javascript">
+
+    // Clear existing error messages
+    document.getElementById("nameError").innerText = "";
+    document.getElementById("emailError").innerText = "";
+    document.getElementById("mobileError").innerText = "";
+    document.getElementById("messageError").innerText = "";
+
+    function validateName() {
+        var name = document.getElementById("name").value.trim();
+        var nameRegex = /^[A-Za-z\s]+$/;
+        // Check if name is empty or name length
+        if (name === "") {
+            document.getElementById("nameError").innerText = "Please enter your name.";
+            return false;
+        } else if (!nameRegex.test(name)) {
+            document.getElementById("nameError").innerText = "Please Enter valid name";
+            return false;
+        } else if (name.length < 3 || name.length > 20) {
+            document.getElementById("nameError").innerText = "Name should be minimum 3 characters and maximum 20 characters ";
+            return false;
+        }
+
+        document.getElementById("nameError").innerText = "";
+        return true;
+
+    }
+
+    function validateEmail() {
+        var email = document.getElementById("email").value.trim();
+        // Regular expression pattern for email validation
+        var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        // Check if email is empty or invalid
+        if (email === "") {
+            document.getElementById("emailError").innerText = "Please enter your email.";
+            return false;
+        } else if (!emailPattern.test(email)) {
+            document.getElementById("emailError").innerText = "Please enter a valid email address.";
+            return false;
+        }
+
+        document.getElementById("emailError").innerText = "";
+        return true;
+
+    }
+
+    function validateMobile() {
+        var mobile = document.getElementById("mobile").value.trim();
+        // Regular expression pattern for mobile validation
+        var mobilePattern = /^\d{10}$/;
+        // Check if mobile is empty or invalid
+        if (mobile === "") {
+            document.getElementById("mobileError").innerText = "Please enter your mobile number.";
+            return false;
+        } else if (!mobilePattern.test(mobile)) {
+            document.getElementById("mobileError").innerText = "Please enter a valid 10-digit mobile number.";
+            return false;
+        }
+
+        document.getElementById("mobileError").innerText = "";
+        return true;
+
+    }
+
+    function validateMessage() {
+        var message = document.getElementById("message").value.trim();
+        // Check if message is empty or msg length
+        if (message === "") {
+            document.getElementById("messageError").innerText = "Please enter your message.";
+            return false;
+        } else if (message.length < 8 || message.length > 50) {
+            document.getElementById("messageError").innerText = "Message should be minimum 8 characters and maximum 50 characters";
+            return false;
+        }
+        document.getElementById("messageError").innerText = "";
+        return true;
+    }
+
+
+    document.getElementById('contactForm').onsubmit = function () {
+        // Perform form validation here
+        var name = document.getElementById("name").value.trim();
+        var email = document.getElementById("email").value.trim();
+        var mobile = document.getElementById("mobile").value.trim();
+        var message = document.getElementById("message").value.trim();
+
+        if (name === "") {
+            document.getElementById("nameError").innerText = "Please enter your name.";
+            return false;
+        }
+
+        if (email === "") {
+            document.getElementById("emailError").innerText = "Please enter your email.";
+            return false;
+        }
+
+        if (mobile === "") {
+            document.getElementById("mobileError").innerText = "Please enter your mobile number.";
+            return false;
+        }
+        if (message === "") {
+            document.getElementById("messageError").innerText = "Please enter your message.";
+            return false;
+        }
+
+        // If form is valid, allow submission
+        return true;
+    };
+
+</script>

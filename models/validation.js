@@ -11,6 +11,7 @@ const userSchema = mongoose.Schema({
   email: {
     type: String,
     required: true,
+    unique:true,
     validate(value) {
       if (!validator.isEmail(value)) {
         throw new Error("Invalid Email Id");
@@ -18,7 +19,7 @@ const userSchema = mongoose.Schema({
     },
   },
   mobile: {
-    type: Number,
+    type: String,
     required: true,
     min: 10,
   },

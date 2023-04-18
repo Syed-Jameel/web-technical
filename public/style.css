@@ -354,6 +354,12 @@ footer p a:hover {
     transition: 0.5s;
 }
 
+.error {
+    color: red;
+    margin-top: -10px;
+    font-size: 1.2rem;
+}
+
 /* responsive code */
 @media screen and (max-width:768px) {
     html {
