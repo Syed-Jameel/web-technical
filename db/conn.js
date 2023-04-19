@@ -4,8 +4,8 @@
 //import mogoose module
 const mongoose = require('mongoose');
 // database
-const mongoDB_URI = "mongodb+srv://syed:Syed%407875@cluster0.j9elohl.mongodb.net/webtechnical_db?retryWrites=true&w=majority";
-mongoose.connect(process.env.mongoDB_URI || "mongodb://localhost:27017/webtechnical_db",{
+//const mongoDB_URI = "mongodb+srv://syed:Syed%407875@cluster0.j9elohl.mongodb.net/webtechnical_db?retryWrites=true&w=majority";
+mongoose.connect(process.env.MONGO_CLUSTER || "mongodb://localhost:27017/webtechnical_db",{
     useNewUrlParser:true,
     useUnifiedTopology:true,
 
