@@ -16,7 +16,7 @@
 
         <div class="row">
             <div class="col-md-6 col-12 mx-auto">
-                <form action="/contact" method="POST" id="contactForm" onsubmit="return validateForm()">
+                <form action="/contact" method="POST" id="contactForm">
                     <div class="inputBox">
                         <input type="text" name="name" id="name" onkeyup="validateName()">
                         <h3>Name</h3>
@@ -142,22 +142,47 @@
         var mobile = document.getElementById("mobile").value.trim();
         var message = document.getElementById("message").value.trim();
 
+
+        // Check if name is empty or name length
+        var nameRegex = /^[A-Za-z\s]+$/;
+
         if (name === "") {
             document.getElementById("nameError").innerText = "Please enter your name.";
             return false;
+        } else if (!nameRegex.test(name)) {
+            document.getElementById("nameError").innerText = "Please Enter valid name";
+            return false;
+        } else if (name.length < 3 || name.length > 20) {
+            document.getElementById("nameError").innerText = "Name should be minimum 3 characters and maximum 20 characters ";
+            return false;
         }
 
+        // Check if email is empty or invalid
         if (email === "") {
             document.getElementById("emailError").innerText = "Please enter your email.";
             return false;
+        } else if (!emailPattern.test(email)) {
+            document.getElementById("emailError").innerText = "Please enter a valid email address.";
+            return false;
         }
+
+        // Check if mobile is empty or invalid
+        var mobilePattern = /^\d{10}$/;
 
         if (mobile === "") {
             document.getElementById("mobileError").innerText = "Please enter your mobile number.";
             return false;
+        } else if (!mobilePattern.test(mobile)) {
+            document.getElementById("mobileError").innerText = "Please enter a valid 10-digit mobile number.";
+            return false;
         }
+
+        // Check if message is empty or msg length
         if (message === "") {
             document.getElementById("messageError").innerText = "Please enter your message.";
+            return false;
+        } else if (message.length < 8 || message.length > 50) {
+            document.getElementById("messageError").innerText = "Message should be minimum 8 characters and maximum 50 characters";
             return false;
         }
 
